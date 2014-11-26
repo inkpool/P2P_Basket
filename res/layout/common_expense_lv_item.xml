@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/lv_item"
+    android:layout_height="45.0dip" >
+
+    <ImageView
+        android:id="@+id/category_icon_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginTop="8.0dip" />
+
+    <TextView
+        android:id="@+id/p2p_channel_name_tv"
+        style="@style/lv_item_text"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10.0dip" />
+
+    <TextView
+        android:id="@+id/cost_tv"
+        style="@style/lv_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.30"
+        android:gravity="right"
+        android:textSize="18.0dip" />
+
+    <TextView
+        android:id="@+id/interest_tv"
+        style="@style/lv_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.20"
+        android:gravity="right"
+        android:textSize="18.0dip" />
+
+    <ImageView
+        android:id="@+id/go_detail_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center"
+        android:layout_marginLeft="5.0dip"
+        android:layout_marginRight="8.0dip"
+        android:background="@drawable/go_detail_arrow"
+        android:visibility="invisible" />
+
+</LinearLayout>

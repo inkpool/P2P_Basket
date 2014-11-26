@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">P2PNote</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="input_username">请输入用户名或注册email或手机号</string>
+    <string name="input_password">请输入密码</string>
+    <string name="mainpage_title">概述</string>
+    <string name="record">记一笔</string>
+    <string name="login">登录</string>
+    <string name="confirm">确认</string>
+    <string name="invest_name">项目名称</string>
+    <string name="channel_name">投资平台</string>
+    <string name="amount">投资金额</string>
+    <string name="interest_rate">年化利率</string>
+    <string name="between">%~</string>
+    <string name="project_type">投资类型</string>
+    <string name="repayment_type">计息方式</string>
+    <string name="invest_date">计息时间</string>
+    <string name="repayment_ending_date">结束日期</string>
+    <string name="save">保存</string>
+    <string name="cancel">取消</string>
+    <string name="is_guarantee">是否担保</string>
+    <string name="invest_add">新的投资</string>
+    <string name="tab1">主页</string>
+    <string name="tab2">流水</string>
+    <string name="tab3">分析</string>
+    <string name="tab4">平台</string>
+    <string name="tab5">更多</string>
+    <string name="week_invest">本周投资</string>
+    <string name="already_expire">已经到期</string>
+    <string name="will_expire">即将到期</string>
+    <string name="listview_data_loading">正在加载数据...</string>
+    <string name="detail_list">流水明细</string>
+    <string name="interest">预计利息</string>
+    <string name="delete_title">删除提示</string>
+    <string name="delete_message">是否删除该记录?</string>
+    <string name="delete">删除</string>
+    <string name="delete_cancel">取消</string>
+    <string name="message_error_system">系统错误</string>
+    <string name="message_delete_ok">删除成功.</string>
+    <string name="message_error_edit">抱歉,只有收入和支出记录可以编辑</string>
+
+    <!-- memo——MyDialog -->
+    <string name="my_dialog_loading">Loading</string>
+    <string name="dialog_memo_title">备注</string>
+    <string name="dialog_memo_ok">保存</string>
+    <string name="dialog_memo_cancle">取消</string>
+    <string name="point">温馨提示</string>
+    <string name="exit_message">你确定要退出吗？</string>
+    <string name="exit_ok">确定</string>
+    <string name="exit_cancle">取消</string>
+    <string name="error_system_message">系统错误</string>
+    <string name="today_income">当日收益预估：</string>
+    <string name="avg_interest_rate">平均年化收益：</string>
+    <string name="total_amount">在投总额:</string>
+    <string name="detail_page_title">流水明细</string>
+    <string name="report_page_title">报表分析</string>
+    
+    <string name="sql_week_sum">select count(*) as cnt,sum(amount) amount,round(sum(amount*interest_rate_min/100/365*(julianday(repayment_ending_date)-julianday(invest_date))),2) interest from user_invest_record where invest_date&gt;=? and invest_date&lt;=? and invest_status=\'投资中\'</string>
+    <string name="sql_week_select">select * from user_invest_record where invest_date&gt;=? and invest_date&lt;=? and invest_status=\'投资中\' order by invest_id desc</string>
+    <string name="sql_already_expire_sum">select count(*) as cnt,sum(amount) as amount,round(sum(amount*interest_rate_min/100/365*(julianday(repayment_ending_date)-julianday(invest_date))),2) as interest from user_invest_record where repayment_ending_date&lt;=? and repayment_ending_date&lt;=? and invest_status=\'投资中\'</string>
+    <string name="sql_already_expire_select">select * from user_invest_record where repayment_ending_date&lt;=? and repayment_ending_date&lt;=? and invest_status=\'投资中\' order by invest_id desc</string>
+    <string name="sql_will_expire_sum">select count(*) as cnt,sum(amount) amount,round(sum(amount*interest_rate_min/100/365*(julianday(repayment_ending_date)-julianday(invest_date))),2) interest from user_invest_record where repayment_ending_date&gt;? and repayment_ending_date&lt;=? and invest_status=\'投资中\'</string>
+    <string name="sql_will_expire_select">select * from user_invest_record where repayment_ending_date&gt;? and repayment_ending_date&lt;=? and invest_status=\'投资中\' order by invest_id desc</string>
+    <string name="sql_total_sum">select count(1) cnt,sum(amount) amount,round(sum(amount*interest_rate_min)/sum(amount),2) as avg_interest_rate,round(sum(amount*interest_rate_max)/sum(amount),2) as avg_interest_rate_max from user_invest_record</string>
+    <string name="sql_total_select">select * from user_invest_record order by invest_date desc,invest_id desc</string>
+	<string name="sql_channel_report">select * from (select p2p_channel_name,count(*) cnt,sum(amount) amount from user_invest_record where invest_date&gt;=? and invest_date&lt;=? and invest_status=\'投资中\' group by p2p_channel_name) order by amount desc limit 8</string>
+	<string name="sql_interest_report">select * from (select round(interest_rate_min,0) interest,count(*) cnt,sum(amount) amount from user_invest_record where invest_status=\'投资中\' group by round(interest_rate_min,0)) order by amount desc limit 8</string>
+	<string name="sql_invest_date_report">select * from (select substr(invest_date,6,2) months,count(*) cnt,sum(amount) amount from user_invest_record where invest_status=\'投资中\' group by substr(invest_date,6,2)) order by amount desc limit 8</string>
+	<string name="sql_repayment_date_report">select * from (select substr(repayment_ending_date,6,2) months,count(*) cnt,sum(amount) amount from user_invest_record where invest_status=\'投资中\' group by substr(repayment_ending_date,6,2)) order by amount desc limit 8</string>
+	<string name="sql_delete_invest">delete from user_invest_record where invest_id=?</string>
+	<string name="sql_channel_select">select * from user_channel_curr_amount order by amount desc</string>
+	<string name="record_edit">修改记录</string>
+	<string name="record_confirm">到帐确认</string>
+	<string name="real_interest">实际利息确认</string>
+	<string name="channel_balance">投资平台余额</string>
+	<string name="fix_amount">冻结金额</string>
+	<string name="useable_amount">可用余额</string>
+	<string name="channel_maintain">平台维护</string>
+    
+</resources>

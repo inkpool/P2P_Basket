@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/common_bg"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+       
+        android:orientation="vertical"
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content"> 
+        
+        
+    <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <LinearLayout android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="20.0dp"
+            android:layout_marginLeft="10.0dp"
+            android:layout_marginRight="10.0dp">
+            
+    
+        <RadioGroup android:id="@+id/date_tab"  android:orientation="vertical"
+                android:gravity="center_vertical"        
+                android:background="@layout/shape_button" 
+                android:layout_width="30dp" 
+                android:layout_height="wrap_content">
+            <RadioButton 
+                    android:id="@+id/week"
+                    android:text="周" 
+                    style="@style/tab_left" />
+             <RadioButton 
+                    android:id="@+id/month"
+                    android:text="月" 
+                    style="@style/tab_center" />
+            <RadioButton 
+                    android:id="@+id/year"
+                    android:text="年" 
+                    style="@style/tab_right" />
+        </RadioGroup>
+        
+        <LinearLayout android:id="@+id/pielayout"
+          android:layout_width="fill_parent" 
+          android:layout_height="200dp"
+          android:layout_marginLeft="10.0dp"
+          >
+        </LinearLayout>
+
+       </LinearLayout>
+</LinearLayout>   
+</LinearLayout>
+    <TextView 
+        android:id="@+id/charttext"
+        android:background="@drawable/mymoney_bg" 
+        android:layout_width="fill_parent" 
+        android:layout_height="20dp"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:layout_marginTop="10.0dp"
+        android:gravity="center_horizontal"
+        android:text="统计分析图"/>
+    
+      <LinearLayout android:id="@+id/chartlayout"
+          android:layout_width="fill_parent" 
+          android:layout_height="200dp"
+          android:layout_marginLeft="10.0dp"
+          android:layout_marginRight="10.0dp"
+          android:layout_marginTop="10.0dp">
+      </LinearLayout>
+      
+</LinearLayout>
