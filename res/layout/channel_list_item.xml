@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+
+<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="105dp"
+        android:id="@+id/list">
+        
+        <TextView
+            android:id="@+id/channel_name"
+            android:layout_width="60dp"
+            android:layout_height="105dp"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="名字" />
+        <ImageView
+            android:id="@+id/line"
+            android:layout_width="wrap_content"
+            android:layout_height="105dp" 
+            android:layout_toRightOf="@id/channel_name"
+            />
+         <TextView
+            android:id="@+id/useable_num"
+            android:layout_width="220dp"
+            android:paddingLeft="10dp"
+            android:layout_height="35dp"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:layout_toRightOf="@id/line"
+            android:text="haha" />
+        <TextView
+            android:id="@+id/holding_amount"
+            android:layout_width="220dp"
+            android:paddingLeft="10dp"
+            android:textColor="#ffffff"
+            android:textSize="16dp"
+            android:layout_height="35dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:layout_alignLeft="@id/useable_num"
+            android:layout_below="@id/useable_num"
+            android:text="123456"  />
+        <TextView
+            android:id="@+id/holding_interest"
+            android:layout_width="220dp"
+            android:paddingLeft="10dp"
+            android:textColor="#ffffff"
+            android:textSize="16dp"
+            android:layout_height="35dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:layout_alignLeft="@id/useable_num"
+            android:layout_below="@id/holding_amount"
+            android:text="123456"  />
+    </RelativeLayout>
+
+</LinearLayout>

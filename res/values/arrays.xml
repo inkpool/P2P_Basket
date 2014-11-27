@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="repayment_type">
+        <item>到期还本息</item>
+        <item>按月还本息</item>
+		<item>按月只还息</item>
+    </array>
+    <array name="is_guarantee">
+        <item>保本保息</item>
+        <item>仅保本</item>
+        <item>无担保</item>
+    </array>
+
+    <string-array name="remindBeforePayDateStr">
+        <item>不提醒</item>
+        <item>提前一天</item>
+        <item>提前两天</item>
+        <item>提前三天</item>
+        <item>提前四天</item>
+        <item>提前五天</item>
+    </string-array>
+    <string-array name="setting_listview_item_operation">
+        <item>编辑</item>
+        <item>删除</item>
+    </string-array>
+    <string-array name="channel_dim">
+        <item>陆金所</item>
+        <item>人人贷</item>
+        <item>点融网</item>
+        <item>积木盒子</item>
+        <item>宜人贷</item>
+        <item>有利网</item>
+        <item>红岭投资</item>
+        <item>爱投资</item>
+        <item>鑫合汇</item>
+        <item>盛融在线</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="report_type">
+        <item>按平台</item>
+        <item>按到期月份</item>
+        <item>按利率</item>
+    </string-array>
+
+</resources>
