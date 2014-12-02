@@ -44,6 +44,7 @@ public class InvestDao {
 		values.put("guarantee_type", invest.getGuaranteeType());
 		values.put("repayment_type", invest.getRepaymentType());
 		values.put("comment", invest.getComment());
+		//values.put("is_template",invest.getIs_template());
 		values.put("gmt_create", invest.getGmtCreate());
 		values.put("gmt_update", invest.getGmtUpdate());
 
@@ -80,6 +81,13 @@ public class InvestDao {
 						invest.getInterestRateMax(), invest.getRepaymentType(),
 						invest.getGuaranteeType(), invest.getGmtCreate(),
 						invest.getGmtUpdate(), invest.getComment(), investId });
+	}
+	
+	public void saveAsTemplate(Invest invest, Long investId) {
+		db.execSQL(
+				"update user_invest_record set is_template = 1 "+
+				"where invest_id=?",
+				new Object[] { investId });
 	}
 
 	public void delete(Long investId) {

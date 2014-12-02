@@ -179,7 +179,7 @@ public class ReportActivity extends Activity implements OnClickListener,
 		month = (RadioButton) findViewById(R.id.month);
 		year = (RadioButton) findViewById(R.id.year);
 
-		week.setChecked(true); // 默认 选中 周
+		year.setChecked(true); // 默认 选中 年
 		week.setOnCheckedChangeListener(this);
 		month.setOnCheckedChangeListener(this);
 		year.setOnCheckedChangeListener(this);

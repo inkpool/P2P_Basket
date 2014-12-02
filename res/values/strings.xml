@@ -22,7 +22,6 @@
     <string name="save">保存</string>
     <string name="cancel">取消</string>
     <string name="is_guarantee">是否担保</string>
-    <string name="invest_add">新的投资</string>
     <string name="tab1">主页</string>
     <string name="tab2">流水</string>
     <string name="tab3">分析</string>
@@ -66,6 +65,8 @@
     <string name="sql_will_expire_select">select * from user_invest_record where repayment_ending_date&gt;? and repayment_ending_date&lt;=? and invest_status=\'投资中\' order by invest_id desc</string>
     <string name="sql_total_sum">select count(1) cnt,sum(amount) amount,round(sum(amount*interest_rate_min)/sum(amount),2) as avg_interest_rate,round(sum(amount*interest_rate_max)/sum(amount),2) as avg_interest_rate_max from user_invest_record</string>
     <string name="sql_total_select">select * from user_invest_record order by invest_date desc,invest_id desc</string>
+    <string name="sql_total_select_by_filter">select * from user_invest_record where invest_date like ? and p2p_channel_name like ? order by invest_date desc,invest_id desc</string>
+    <string name="sql_template_select">select a.* from user_invest_record a join (select p2p_channel_name,invest_name,max(invest_id) invest_id from user_invest_record group by p2p_channel_name,invest_name) b on a.invest_id=b.invest_id</string>
 	<string name="sql_channel_report">select * from (select p2p_channel_name,count(*) cnt,sum(amount) amount from user_invest_record where invest_date&gt;=? and invest_date&lt;=? and invest_status=\'投资中\' group by p2p_channel_name) order by amount desc limit 8</string>
 	<string name="sql_interest_report">select * from (select round(interest_rate_min,0) interest,count(*) cnt,sum(amount) amount from user_invest_record where invest_status=\'投资中\' group by round(interest_rate_min,0)) order by amount desc limit 8</string>
 	<string name="sql_invest_date_report">select * from (select substr(invest_date,6,2) months,count(*) cnt,sum(amount) amount from user_invest_record where invest_status=\'投资中\' group by substr(invest_date,6,2)) order by amount desc limit 8</string>
@@ -73,11 +74,17 @@
 	<string name="sql_delete_invest">delete from user_invest_record where invest_id=?</string>
 	<string name="sql_channel_select">select * from user_channel_curr_amount order by amount desc</string>
 	<string name="record_edit">修改记录</string>
+	<string name="record_add">新增记录</string>
 	<string name="record_confirm">到帐确认</string>
 	<string name="real_interest">实际利息确认</string>
 	<string name="channel_balance">投资平台余额</string>
 	<string name="fix_amount">冻结金额</string>
 	<string name="useable_amount">可用余额</string>
 	<string name="channel_maintain">平台维护</string>
+	<string name="save_as_template">存为模板</string>
+	<string name="save_one_more">再记一笔</string>
+	<string name="template">模板</string>
+	<string name="input_p2p_channel_name">可输入投资平台</string>
+	<string name="input_invest_month">可输入投资月份</string>
     
 </resources>

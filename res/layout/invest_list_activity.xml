@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" style="@style/common_bg"
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:id="@+id/title_tv" android:background="@drawable/common_title_bg_no_shadow" android:text="@string/detail_list" style="@style/common_title" />
+    <TextView android:id="@+id/title_tv" android:text="@string/detail_list" style="@style/common_title" />
     <LinearLayout android:orientation="vertical" android:id="@+id/switch_time_ly" android:background="@drawable/switch_time_bar_bg" android:layout_width="fill_parent" android:layout_height="64.0dip">
         <!-- <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
             <Button android:layout_gravity="top|left|center" android:id="@+id/pre_btn" android:background="@drawable/pre_month_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="2.0dip" android:layout_marginTop="1.0dip" />

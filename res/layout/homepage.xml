@@ -1,21 +1,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    style="@style/common_bg" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
-	
-        <TextView 
-            android:textSize="@dimen/title_font_size"
-            android:textStyle="bold"
+
+        <TextView
             android:id="@+id/text_today"
-            android:layout_marginLeft="15.0px"
+            style="@style/main_budget_lable_hdpi"
             android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15.0px"
             android:text="@string/week_invest"
-            style="@style/main_budget_lable_hdpi" />
+            android:textSize="@dimen/title_font_size"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_login"
@@ -31,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:background="#88000000" />
-    
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,26 +42,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-            <TextView android:text="@string/today_income" style="@style/main_money_label_hdpi" android:textColor = "@color/white" />
+            <TextView
+                style="@style/main_money_label_hdpi"
+                android:text="@string/today_income"
+                android:textColor="@color/white" />
 
-            <TextView android:id="@+id/text_today_income" style="@style/main_money_hdpi" android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/text_today_income"
+                style="@style/main_money_hdpi"
+                android:textColor="@color/white" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-            <TextView android:text="@string/avg_interest_rate" style="@style/main_money_label_hdpi" android:textColor = "@color/white"/>
+            <TextView
+                style="@style/main_money_label_hdpi"
+                android:text="@string/avg_interest_rate"
+                android:textColor="@color/white" />
 
-            <TextView android:id="@+id/text_avg_interest_rate" style="@style/main_money_hdpi" android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/text_avg_interest_rate"
+                style="@style/main_money_hdpi"
+                android:textColor="@color/white" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-            <TextView android:text="@string/total_amount" style="@style/main_money_label_hdpi" android:textColor = "@color/white"/>
-        	<TextView android:id="@+id/text_total_amount" style="@style/main_money_hdpi" android:textColor="@color/white"/>
+            <TextView
+                style="@style/main_money_label_hdpi"
+                android:text="@string/total_amount"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/text_total_amount"
+                style="@style/main_money_hdpi"
+                android:textColor="@color/white" />
         </TableRow>
     </TableLayout>
 
@@ -71,45 +91,153 @@
         android:layout_height="0.1dp"
         android:background="#88000000" />
 
-    <Button
-        android:id="@+id/btn_record"
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/record" />
-    
-	<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
-            <RelativeLayout android:orientation="horizontal" android:id="@+id/today_row_rl" style="@style/row_stat_hdpi">
-                <FrameLayout android:id="@+id/today_icon_fl" style="@style/main_row_stat_icon_hdpi">
-                    <ImageView android:layout_gravity="center_vertical" android:id="@+id/today_icon_iv" android:background="@drawable/main_today" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-                    <TextView android:textColor="@color/black" android:layout_gravity="center_horizontal" android:id="@+id/date_of_month_tv" android:paddingTop="15.0px" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-                </FrameLayout>
-                <LinearLayout android:layout_toRightOf="@+id/today_icon_fl" style="@style/main_row_stat_time_ly_hdpi">
-                    <TextView android:id="@+id/today_tv" android:text="@string/week_invest" style="@style/main_row_stat_time_tips_hdpi" />
-                    <TextView android:id="@+id/today_count_tv" style="@style/main_row_stat_time_str_hdpi" />
-                </LinearLayout>
-                <TextView android:id="@+id/today_invest_amount_tv" style="@style/main_row_expense_amount_hdpi" />
-                <TextView android:id="@+id/today_interest_amount_tv" style="@style/main_row_income_amount_hdpi" />
-                <ImageView style="@style/main_row_go_detail_hdpi" />
-            </RelativeLayout>
-            <RelativeLayout android:orientation="horizontal" android:id="@+id/already_expire_row_rl" style="@style/row_stat_hdpi">
-                <ImageView android:id="@+id/already_expire_icon_iv" android:background="@drawable/main_week" style="@style/main_row_stat_icon_hdpi" />
-                <LinearLayout android:layout_toRightOf="@+id/already_expire_icon_iv" style="@style/main_row_stat_time_ly_hdpi">
-                    <TextView android:text="@string/already_expire" style="@style/main_row_stat_time_tips_hdpi" />
-                    <TextView android:id="@+id/already_expire_count_tv" style="@style/main_row_stat_time_str_hdpi" />
-                </LinearLayout>
-                <TextView android:id="@+id/already_expire_amount_tv" style="@style/main_row_expense_amount_hdpi" />
-                <TextView android:id="@+id/already_expire_interest_tv" style="@style/main_row_income_amount_hdpi" />
-                <ImageView style="@style/main_row_go_detail_hdpi" />
-            </RelativeLayout>
-            <RelativeLayout android:id="@+id/will_expire_row_rl" android:nextFocusDown="@+id/nav_add_expense_btn" style="@style/row_stat_hdpi">
-                <ImageView android:id="@+id/will_expire_iv" android:background="@drawable/main_month" style="@style/main_row_stat_icon_hdpi" />
-                <LinearLayout android:layout_toRightOf="@+id/will_expire_iv" style="@style/main_row_stat_time_ly_hdpi">
-                    <TextView android:text="@string/will_expire" style="@style/main_row_stat_time_tips_hdpi" />
-                    <TextView android:id="@+id/will_expire_count_tv" style="@style/main_row_stat_time_str_hdpi" />
-                </LinearLayout>
-                <TextView android:id="@+id/will_expire_amount_tv" style="@style/main_row_expense_amount_hdpi" />
-                <TextView android:id="@+id/will_expire_interest_tv" style="@style/main_row_income_amount_hdpi" />
-                <ImageView style="@style/main_row_go_detail_hdpi" />
-            </RelativeLayout>
-        </LinearLayout>
+        android:orientation="vertical" >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/btn_record"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="@string/record" />
+
+            <Button
+                android:id="@+id/btn_template"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/template" />
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/today_row_rl"
+            style="@style/row_stat_hdpi"
+            android:orientation="horizontal" >
+
+            <FrameLayout
+                android:id="@+id/today_icon_fl"
+                style="@style/main_row_stat_icon_hdpi" >
+
+                <ImageView
+                    android:id="@+id/today_icon_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/main_today" />
+
+                <TextView
+                    android:id="@+id/date_of_month_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="15.0px"
+                    android:textColor="@color/black" />
+            </FrameLayout>
+
+            <LinearLayout
+                style="@style/main_row_stat_time_ly_hdpi"
+                android:layout_toRightOf="@+id/today_icon_fl" >
+
+                <TextView
+                    android:id="@+id/today_tv"
+                    style="@style/main_row_stat_time_tips_hdpi"
+                    android:text="@string/week_invest" />
+
+                <TextView
+                    android:id="@+id/today_count_tv"
+                    style="@style/main_row_stat_time_str_hdpi" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/today_invest_amount_tv"
+                style="@style/main_row_expense_amount_hdpi" />
+
+            <TextView
+                android:id="@+id/today_interest_amount_tv"
+                style="@style/main_row_income_amount_hdpi" />
+
+            <ImageView style="@style/main_row_go_detail_hdpi" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/already_expire_row_rl"
+            style="@style/row_stat_hdpi"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/already_expire_icon_iv"
+                style="@style/main_row_stat_icon_hdpi"
+                android:background="@drawable/main_week" />
+
+            <LinearLayout
+                style="@style/main_row_stat_time_ly_hdpi"
+                android:layout_toRightOf="@+id/already_expire_icon_iv" >
+
+                <TextView
+                    style="@style/main_row_stat_time_tips_hdpi"
+                    android:text="@string/already_expire" />
+
+                <TextView
+                    android:id="@+id/already_expire_count_tv"
+                    style="@style/main_row_stat_time_str_hdpi" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/already_expire_amount_tv"
+                style="@style/main_row_expense_amount_hdpi" />
+
+            <TextView
+                android:id="@+id/already_expire_interest_tv"
+                style="@style/main_row_income_amount_hdpi" />
+
+            <ImageView style="@style/main_row_go_detail_hdpi" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/will_expire_row_rl"
+            style="@style/row_stat_hdpi"
+            android:nextFocusDown="@+id/nav_add_expense_btn" >
+
+            <ImageView
+                android:id="@+id/will_expire_iv"
+                style="@style/main_row_stat_icon_hdpi"
+                android:background="@drawable/main_month" />
+
+            <LinearLayout
+                style="@style/main_row_stat_time_ly_hdpi"
+                android:layout_toRightOf="@+id/will_expire_iv" >
+
+                <TextView
+                    style="@style/main_row_stat_time_tips_hdpi"
+                    android:text="@string/will_expire" />
+
+                <TextView
+                    android:id="@+id/will_expire_count_tv"
+                    style="@style/main_row_stat_time_str_hdpi" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/will_expire_amount_tv"
+                style="@style/main_row_expense_amount_hdpi" />
+
+            <TextView
+                android:id="@+id/will_expire_interest_tv"
+                style="@style/main_row_income_amount_hdpi" />
+
+            <ImageView style="@style/main_row_go_detail_hdpi" />
+        </RelativeLayout>
+    </LinearLayout>
+
 </LinearLayout>

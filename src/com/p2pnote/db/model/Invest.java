@@ -1,7 +1,5 @@
 package com.p2pnote.db.model;
 
-import java.util.Date;
-
 import android.R.integer;
 import android.database.Cursor;
 import android.os.Parcel;
@@ -37,6 +35,16 @@ public class Invest implements Parcelable {
 
 	private String comment;
 	
+	private int is_template;
+	
+	public int getIs_template() {
+		return is_template;
+	}
+
+	public void setIs_template(int is_template) {
+		this.is_template = is_template;
+	}
+
 	public integer getInvest_type_id() {
 		return invest_type_id;
 	}
@@ -255,7 +263,7 @@ public class Invest implements Parcelable {
 		dest.writeString(gmtCreate);
 		dest.writeString(gmtUpdate);
 		dest.writeString(comment);
-
+		dest.writeInt(is_template);
 	}
 
 	public static final Parcelable.Creator<Invest> CREATOR = new Parcelable.Creator<Invest>() {
@@ -283,5 +291,6 @@ public class Invest implements Parcelable {
 		gmtCreate = in.readString();
 		gmtUpdate = in.readString();
 		comment = in.readString();
+		is_template=in.readInt();		
 	}
 }

@@ -1,5 +1,6 @@
 package com.p2pnote.listitem;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +30,7 @@ import android.widget.TextView;
 public class DetailPageAsyncTask extends
 		AsyncTask<DetailPageActivity, Void, Void> {
 
-	DetailPageActivity investView;
+	DetailPageActivity detailView;
 	ArrayList<Object> trans = new ArrayList<Object>();
 	
 	private MyDbHelper db = null;
@@ -45,44 +46,26 @@ public class DetailPageAsyncTask extends
 	@Override
 	protected Void doInBackground(DetailPageActivity... params) {
 				
-		investView = params[0];
+		detailView = params[0];
 		// query database;
 		// this is test code
-		db = investView.db;
+		db = detailView.db;
 		Cursor cursor;
 		
-		switch (investView.mode) {
-			case DetailPageActivity.mode_today_invest:
-				sql_sum=investView.getString(R.string.sql_week_sum);
-				sql_select=investView.getString(R.string.sql_week_select);
-				break;
-			case DetailPageActivity.mode_already_expire: 	
-				sql_sum=investView.getString(R.string.sql_already_expire_sum);
-				sql_select=investView.getString(R.string.sql_already_expire_select);
-				break;
-			case DetailPageActivity.mode_will_expire:
-				sql_sum=investView.getString(R.string.sql_will_expire_sum);
-				sql_select=investView.getString(R.string.sql_will_expire_select);
-				break;			
-			default:
-				sql_sum=null;
-				sql_select=investView.getString(R.string.sql_total_select);
+		switch (detailView.mode) {
+		case DetailPageActivity.MODE_NONE:
+			sql_select=detailView.getString(R.string.sql_total_select);
+			break;
+		case DetailPageActivity.MODE_TEMPLATE:
+			sql_select=detailView.getString(R.string.sql_template_select);
+			break;
+		case DetailPageActivity.MODE_SEARCH:
+			sql_select=detailView.getString(R.string.sql_total_select_by_filter);
+			break;
 		}
-		
-		if (investView.mode>DetailPageActivity.mode_none)
-		{	
-			cursor = db.rawQuery(sql_sum,new String[]{investView.start_time,investView.end_time});
-			if (cursor.moveToNext()) {
-				if(cursor.getInt(0) >0)
-					invest_amount = cursor.getDouble(1);
-					interest = cursor.getDouble(2);
-			}
 				
-			cursor.close();
-		}
-		
-		if (investView.mode>DetailPageActivity.mode_none)
-			cursor = db.rawQuery(sql_select,new String[]{investView.start_time,investView.end_time});
+		if (detailView.mode==DetailPageActivity.MODE_SEARCH)
+			cursor = db.rawQuery(sql_select,new String[]{detailView.invest_month,detailView.p2p_channel_name});
 		else
 			cursor = db.rawQuery(sql_select,null);
 		while (cursor.moveToNext()) {
@@ -104,25 +87,6 @@ public class DetailPageAsyncTask extends
 			list.add(data);
 		}
 		
-		/*
-		Collections.sort(list, new Comparator<Invest>(){  
-			  
-            public int compare(Invest o1, Invest o2)  
-            {  
-                //取出操作时间  
-                int ret = 0;  
-                try  
-                {  
-                	ret = df.parse(o2.getGmtUpdate()).compareTo(df.parse(o1.getGmtUpdate()));   
-                } catch (Exception e)  
-                {                     
-                    throw new RuntimeException(e);  
-                }  
-                return  ret;  
-            }  
-              
-        });  
-        */
 		ListIterator<Invest> iterator = list.listIterator();
 		while(iterator.hasNext()){
 			Invest da = iterator.next();
@@ -135,49 +99,21 @@ public class DetailPageAsyncTask extends
 		
 		cursor.close();
 		return null;
-	}
-	
-	private void setData() {  
-        // 组织数据源  
-        Map<String, String> mp = new HashMap<String, String>();  
-        mp.put("itemTitle", "A");  
-        splitData.add(mp);
-        
-        /*
-        mp = new HashMap<String, String>();  
-        mp.put("itemTitle", "B");  
-          
-        splitList.add(mp);  
-
-        for (int i = 0; i < 6; i++) {  
-            Map<String, String> map = new HashMap<String, String>();  
-            map.put("itemTitle", "文章2-" + i);  
-            mylist.add(map);  
-        } 
-        */ 
-    }  
+	}  
 
 	@Override
 	protected void onPostExecute(Void result) {
-		investView.findViewById(R.id.listview_loading_tv).setVisibility(View.GONE);
+		detailView.findViewById(R.id.listview_loading_tv).setVisibility(View.GONE);
 		if (trans.size() == 0) 
-			investView.findViewById(R.id.lv_empty_iv).setVisibility(View.VISIBLE);
+			detailView.findViewById(R.id.lv_empty_iv).setVisibility(View.VISIBLE);
 		else
-			investView.findViewById(R.id.lv_empty_iv).setVisibility(View.GONE);
+			detailView.findViewById(R.id.lv_empty_iv).setVisibility(View.GONE);
 
 		//((TextView)investView.findViewById(R.id.invest_amount_tv)).setText(String.format("+￥%.2f", invest_amount));
 		//((TextView)investView.findViewById(R.id.interest_tv)).setText(String.format("-￥%.2f", interest));
 		
-		investView.expense_lv.setAdapter(new DetailPageAdapter(investView, (ArrayList<Object>)trans.clone()));
+		detailView.expense_lv.setAdapter(new DetailPageAdapter(detailView, (ArrayList<Object>)trans.clone()));
 		//investView.expense_lv.setAdapter(new MyAdapter(investView, (ArrayList<Object>)trans.clone(),splitData));
 		super.onPostExecute(result);
-	}
-	
-	private String format(Date date){
-		String str = "";
-		SimpleDateFormat ymd = null;
-		ymd = new SimpleDateFormat("yyyy-MM-dd");
-		str = ymd.format(date); 
-		return str;
 	}
 }
