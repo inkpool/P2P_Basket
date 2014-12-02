@@ -2,12 +2,9 @@ package com.p2pnote.ui;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
+import com.actionbarsherlock.internal.view.View_HasStateListenerSupport;
 import com.p2pnote.db.MyDbHelper;
 import com.p2pnote.db.model.Invest;
 import com.p2pnote.listitem.DetailPageAsyncTask;
@@ -16,38 +13,38 @@ import com.p2pnote.utility.Function;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DetailPageActivity extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener{
+public class DetailPageActivity extends Activity implements View.OnClickListener,View.OnTouchListener,AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener{
 	
-	public static String str_startTime 	= "startTime";
-	public static String str_endTime	= "endTime";
-	public static String str_title 		= "title";
-	public static String str_mode 		= "mode";
-	public static final int mode_none 	= 0;
-	public final static int mode_already_expire= 1;
-	public final static int mode_will_expire 	= 2;
-	public final static int mode_today_invest 	= 3;
-	private static String datefmt = "yyyy年MM月dd日";
-	//private InvestSQLiteOpenHelper helper = null;
+	public static String STR_MODE 		= "mode";
+	public static final int MODE_NONE 	= 0;
+	public static final int MODE_TEMPLATE 	= 1;
+	public static final int MODE_SEARCH 	= 2;
+
 	public MyDbHelper db = null;
 	
-	public TextView title_tv;
-	public TextView time_interval_tv;
+	private TextView title_tv;
 	public  ListView expense_lv;
-	public View empty_tips;
+	private View empty_tips;
+	private EditText edit_invest_month,edit_channel_name;
+	private Button btn_search;
 	
-	public String start_time, end_time;
+	public String invest_month, p2p_channel_name;
 	public String title;
 	public int mode;
 	
@@ -55,6 +52,9 @@ public class DetailPageActivity extends Activity implements View.OnClickListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_page);
+
+		Intent intent = getIntent();
+		mode = intent.getIntExtra(STR_MODE, 0);
 
 		loadingFormation();
     }	     
@@ -67,21 +67,28 @@ public class DetailPageActivity extends Activity implements View.OnClickListener
 			db.open();
 		}
 		
-		title_tv 			= (TextView)findViewById(R.id.title_tv);
+		//title_tv 			= (TextView)findViewById(R.id.title_tv);
 		expense_lv			= (ListView)findViewById(R.id.expense_lv);
 		
 		empty_tips = ((LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.common_lv_empty_tips, null);
-		
-		findViewById(R.id.pre_btn).setOnClickListener(this);
-		findViewById(R.id.next_btn).setOnClickListener(this);
-		
+			
 		expense_lv.setOnItemClickListener(this);
 		expense_lv.setOnItemLongClickListener(this);
-
-		mode= mode_none;
-		
+			
 		expense_lv.setEmptyView(empty_tips);
-		title_tv.setText(title);
+		
+		edit_invest_month=(EditText) findViewById(R.id.edit_invest_month);
+		edit_channel_name=(EditText) findViewById(R.id.edit_channel_name);
+		btn_search=(Button) findViewById(R.id.btn_search);
+		btn_search.setOnClickListener(this);
+		
+		if (mode==MODE_TEMPLATE)
+		{
+			edit_channel_name.setVisibility(View.GONE);
+			btn_search.setVisibility(View.GONE);	
+			edit_invest_month.setText(R.string.template);
+		}
+		
 	}
 
 	@Override
@@ -103,9 +110,36 @@ public class DetailPageActivity extends Activity implements View.OnClickListener
 	}
 
 	@Override
-	public void onClick(View v) {		
-		//setTimeIntervalText();
-		refreshTransactions();
+	public void onClick(View v) {				
+		switch (v.getId()) {
+		case R.id.btn_search:
+			try {
+				if (!check())
+					return;
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			mode=MODE_SEARCH;
+			refreshTransactions();
+			break;
+		}
+	}
+	
+	@Override
+	public boolean onTouch(View v, MotionEvent arg1) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.edit_invest_month:
+			if (edit_invest_month.getText().toString().equals(R.string.input_invest_month))
+				edit_invest_month.setText("");
+			break;
+		case R.id.edit_channel_name:
+			if (edit_channel_name.getText().toString().equals(R.string.input_p2p_channel_name))
+				edit_channel_name.setText("");
+			break;
+		}
+		return false;
 	}
 
 	@Override //弹出的删除与编辑  对话框
@@ -141,12 +175,12 @@ public class DetailPageActivity extends Activity implements View.OnClickListener
 						else
 						{	
 							intent= new Intent(nav, RecordMaintainActivity.class);
-							intent.putExtra("mode", RecordMaintainActivity.EDIT_MODE);
+							intent.putExtra(STR_MODE, RecordMaintainActivity.EDIT_MODE);
 						}	
 						Bundle mBundle = new Bundle();  
 				        mBundle.putParcelable("data", data);  
 						intent.putExtras(mBundle);
-						intent.putExtra(str_mode, mode);
+						//intent.putExtra(str_mode, mode);
 						nav.startActivityForResult(intent, 0);
 					} else {
 						AlertDialog.Builder builder = new AlertDialog.Builder(nav);
@@ -205,7 +239,7 @@ public class DetailPageActivity extends Activity implements View.OnClickListener
 			else
 			{	
 				intent= new Intent(this, RecordMaintainActivity.class);
-				intent.putExtra("mode", RecordMaintainActivity.EDIT_MODE);
+				intent.putExtra(STR_MODE, RecordMaintainActivity.EDIT_MODE);
 			}	
 			intent.putExtra("data", data);
 			startActivityForResult(intent, 0);	
@@ -222,6 +256,23 @@ public class DetailPageActivity extends Activity implements View.OnClickListener
 		String sql=getString(R.string.sql_delete_invest);
 		db.execSQL(sql,new String[] {String.valueOf(data.getInvestId())});
 		refreshTransactions();
+	}
+	
+	public Boolean check() throws ParseException {
+		if (TextUtils.isEmpty(edit_channel_name.getText()) && TextUtils.isEmpty(edit_invest_month.getText())) {
+			Toast.makeText(this, "过滤条件不能都为空", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		
+		p2p_channel_name=edit_channel_name.getText().toString()+"%";
+		invest_month=edit_invest_month.getText().toString()+"%";
+		if (invest_month.length()!=8 && invest_month.lastIndexOf("-")>=0)
+		{	
+			Toast.makeText(this, "时间格式填写有误", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+
+		return true;
 	}
     
 }

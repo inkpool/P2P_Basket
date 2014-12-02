@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" style="@style/common_bg"
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:id="@+id/title_tv" android:background="@drawable/common_title_bg_no_shadow" android:text="@string/channel_maintain" style="@style/common_title" />
+    <TextView android:id="@+id/title_tv" android:text="@string/channel_maintain" style="@style/common_title" />
 
     <FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1.0">
         <ImageView android:id="@+id/lv_empty_iv" android:visibility="gone" style="@style/common_lv_empty_for_expense" />

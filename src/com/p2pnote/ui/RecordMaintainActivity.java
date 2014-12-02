@@ -42,6 +42,7 @@ public class RecordMaintainActivity extends Activity implements OnClickListener,
 		OnTouchListener {
 	final static int INSERT_MODE = 0;
 	final static int EDIT_MODE = 1;
+	final static int TEMPLATE_MODE = 2;
 	TextView text_record_title;
 	EditText edit_invest_name;
 	EditText edit_channel_name;
@@ -84,8 +85,6 @@ public class RecordMaintainActivity extends Activity implements OnClickListener,
 		loadingFormation();
 	}
 
-	
-
 	private void loadingFormation() {		
 		text_record_title=(TextView) this.findViewById(R.id.record_title);
 		edit_invest_name = (EditText) this.findViewById(R.id.edit_invest_name);
@@ -119,11 +118,19 @@ public class RecordMaintainActivity extends Activity implements OnClickListener,
 		Button btn_cancel = (Button) this.findViewById(R.id.btn_cancel);
 		btn_cancel.setOnClickListener(this);
 		
+		Button btn_onemore = (Button) this.findViewById(R.id.btn_onemore);
+		btn_onemore.setOnClickListener(this);
+		
 		Button btn_confirm = (Button) this.findViewById(R.id.btn_confirm);
 		btn_confirm.setOnClickListener(this);
-		if (dml_type==INSERT_MODE)
+		if (dml_type==INSERT_MODE || dml_type==TEMPLATE_MODE)
 		{
 			btn_confirm.setVisibility(View.GONE);
+		}
+		
+		if (dml_type==INSERT_MODE)
+		{
+			btn_onemore.setVisibility(View.GONE);
 		}
 		// 两个下拉框
 		spinner_repayment_type = (Spinner) this
@@ -134,10 +141,13 @@ public class RecordMaintainActivity extends Activity implements OnClickListener,
 		loadData(data);
 	}
 	
-	private void loadData(Invest data) {		
+	private void loadData(Invest data) {
+		if (dml_type==EDIT_MODE)
+			text_record_title.setText(R.string.record_edit);
+		else
+			text_record_title.setText(R.string.record_add);
 		if (data!=null)
 		{
-			text_record_title.setText("投资记录维护");
 			edit_invest_name.setText(data.getInvestName());
 			edit_channel_name.setText(data.getP2pChannelName());
 			edit_invest_date.setText(data.getInvestDate());
@@ -185,6 +195,18 @@ public class RecordMaintainActivity extends Activity implements OnClickListener,
 			break;
 		case R.id.btn_cancel:
 			finish();
+			break;
+		case R.id.btn_onemore:
+			try {
+				if (!check())
+					return;
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			dml_type=TEMPLATE_MODE;
+			text_record_title.setText(R.string.record_add);
+			saveOneMore();			
 			break;
 		case R.id.btn_confirm:
 			if(data != null && dml_type==EDIT_MODE){
@@ -278,11 +300,11 @@ public class RecordMaintainActivity extends Activity implements OnClickListener,
 		bind();
 		InvestDao pd = new InvestDao(SplashScreenActivity.db);
 			
-		if (dml_type==0)
+		if (dml_type==INSERT_MODE || dml_type==TEMPLATE_MODE)
 		{	
 			pd.add(data);
 		}	
-		else if (dml_type==1) {
+		else if (dml_type==EDIT_MODE) {
 			pd.update(data, investId);		
 			data.setInvestId(investId);
 		}
@@ -290,10 +312,17 @@ public class RecordMaintainActivity extends Activity implements OnClickListener,
 		return true;
 	}
 	
+	public void saveOneMore() {
+		bind();
+		edit_invest_date.setText(today);
+		edit_repayment_ending_date.setText(null);
+		edit_amount.setText(null);
+	}
+	
 	public Boolean save_channel() {
 		UserChannelAmountDao channelDao = new UserChannelAmountDao(SplashScreenActivity.db);
 			
-		if (dml_type==0)
+		if (dml_type==INSERT_MODE || dml_type==TEMPLATE_MODE)
 		{	
 			// 判断这个渠道是不是第一次投资，第一次直接插入，否则修改原有记录
 			int id=channelDao.find(userChannelCurrAmount.getChannelName());
@@ -307,7 +336,7 @@ public class RecordMaintainActivity extends Activity implements OnClickListener,
 				channelDao.add(userChannelCurrAmount);
 			}	
 		}	
-		else if (dml_type==1) {
+		else if (dml_type==EDIT_MODE) {
 			//这里有问题，要计算差额，需要进一步修改
 			//channelDao.update(userChannelCurrAmount, userChannelCurrAmount.getId());
 		}
@@ -357,7 +386,7 @@ public class RecordMaintainActivity extends Activity implements OnClickListener,
 		double interest=Function.getInterest(data.getAmount(), data.getInterestRateMin(), data.getInvestDate(), data.getRepaymentEndingDate(), data.getRepaymentType());
 		userChannelCurrAmount.setHoldingInterest(new Double(new DecimalFormat(".00").format(interest)));
 		
-		if (dml_type==INSERT_MODE)
+		if (dml_type==INSERT_MODE || dml_type==TEMPLATE_MODE)
 			data.setGmtCreate(date_nowString);
 		data.setGmtUpdate(date_nowString);
 		

@@ -14,7 +14,7 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="@string/invest_add"
+            android:text="@string/record_add"
             />
     </RelativeLayout>
 
@@ -266,6 +266,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/cancel" />
+        
+        <Button
+            android:id="@+id/btn_onemore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/save_one_more" />
         
         <Button
             android:id="@+id/btn_confirm"

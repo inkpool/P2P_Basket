@@ -42,6 +42,8 @@ public class HomePageActivity extends Activity implements OnClickListener {
 
 	private Button btn_login;
 	private Button btn_record;
+	private Button btn_template;
+	
 	private TextView text_today;
 	private TextView text_today_income;
 	private TextView text_avg_interest_rate;
@@ -103,6 +105,11 @@ public class HomePageActivity extends Activity implements OnClickListener {
 			intent = new Intent(this, RecordMaintainActivity.class);
 			startActivity(intent);
 			break;
+		case R.id.btn_template:
+			intent = new Intent(this, DetailPageActivity.class);
+			intent.putExtra(DetailPageActivity.STR_MODE, DetailPageActivity.MODE_TEMPLATE);
+			startActivity(intent);
+			break;	
 		case R.id.today_row_rl:
 			showInvestListActivity(weekStart, today,getString(R.string.week_invest), InvestListActivity.mode_week_invest);
 			break;
@@ -141,6 +148,9 @@ public class HomePageActivity extends Activity implements OnClickListener {
 		btn_record = (Button) this.findViewById(R.id.btn_record);
 		btn_record.setOnClickListener(this);
 
+		btn_template = (Button) this.findViewById(R.id.btn_template);
+		btn_template.setOnClickListener(this);
+		
 		text_today = (TextView) findViewById(R.id.text_today);
 		text_today_income = (TextView) findViewById(R.id.text_today_income);
 		text_avg_interest_rate = (TextView) findViewById(R.id.text_avg_interest_rate);
