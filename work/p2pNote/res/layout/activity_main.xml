@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:hyman="http://schemas.android.com/apk/res/com.crowley.p2pnote"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <com.crowley.p2pnote.ui.SlidingMenu 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        hyman:rightPadding="50dp">
+        
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            
+            <include layout="@layout/left_menu"/>
+            <include layout="@layout/tab_container"/>
+        </LinearLayout>
+    </com.crowley.p2pnote.ui.SlidingMenu>
+    
+</RelativeLayout>
+

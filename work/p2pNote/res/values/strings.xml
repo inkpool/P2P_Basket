@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">网贷篮子</string>
+    
+    <string name="new_item">新的投资</string>
+    <string name="basic_info01">当日收益</string>
+    <string name="basic_info02">均年化收益</string>
+    <string name="basic_info03">在投总额</string>
+    <string name="addMinus">±</string>
+    <string name="tab_button01">已经到期</string>
+    <string name="tab_button02">即将到期</string>
+    
+    <string name="list_time">到期</string>
+    <string name="list_money">￥</string>
+    
+    <string name="water_list_sort_01">到期时间</string>
+    <string name="water_list_sort_02">投资金额</string>
+    <string name="water_list_sort_03">年化收益率</string>
+    <string name="water_list_sort_04">投资时间</string>
+    
+    <string name="new_item_title">新的投资</string>
+    <string name="new_item_info01">投资平台</string>
+    <string name="new_item_info02">投资类型</string>
+    <string name="new_item_info03">本金</string>
+    <string name="new_item_info04">收益率类型</string>
+    <string name="new_item_info05">年化收益率</string>
+    <string name="new_item_info06">计息方式</string>
+    <string name="new_item_info07">计息时间</string>
+    <string name="new_item_info08">结束时间</string>
+    
+    
+    <string name="tab_index">主页</string>
+    <string name="tab_water">流水</string>
+    <string name="tab_analyze">分析</string>
+    <string name="tab_platform">平台</string>
+    <string name="tab_more">更多</string>
+    
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="company_name01">陆金所</string>
+    <string name="company_name02">人人贷</string>
+    <string name="company_name03">积木盒子</string>
+    <string name="company_name04">点融网</string>
+    <string name="company_name05">鑫合汇</string>
+    <string name="company_name06">盛融在线</string>
+    <string name="company_name07">有利网</string>
+    <string name="company_name08">爱投资</string>
+    <string name="company_name09">其他</string>
+    
+    <string name="select_platform">请选择投资平台</string>
+    <string name="select_type">请选择投资类型</string>
+    <string name="select_earning">请选择收益率类型</string>
+    <string name="select_method">请选择计息方式</string>
+    <string name="select_earning_item01">浮动收益率</string>
+    <string name="select_earning_item02">固定收益率</string>
+    <string name="select_method_item01">到期还本息</string>
+    <string name="select_method_item02">按月还本息</string>
+    <string name="select_method_item03">按月只还息</string>
+    
+    <string name="analyze_piechart01">各平台在投总额饼状图</string>
+    <string name="analyze_piechart02">收益率分布饼状图</string>
+    <string name="analyze_piechart03">期限结构分布饼状图</string>
+    <string name="analyze_piechart04">回款时间分布饼状图</string>
+    <string name="analyze_piechart05">各平台余额分布饼状图</string>    
+    <string name="analyze_piechart01_small">在投总额\n饼状图</string>
+    <string name="analyze_piechart02_small">收益率分布\n饼状图</string>
+    <string name="analyze_piechart03_small">期限结构\n饼状图</string>
+    <string name="analyze_piechart04_small">回款时间\n饼状图</string>
+    <string name="analyze_piechart05_small">平台余额\n饼状图</string>
+    
+    <string name="left_menu_01">数据云备份</string>
+    <string name="left_menu_02">检查更新</string>
+    <string name="left_menu_03">用户反馈</string>
+    <string name="left_menu_04">关于网贷篮子</string>
+    <string name="left_menu_05">安全设置</string>
+    <string name="left_menu_06">分享给好友</string>
+    
+    <string name="sure">确认</string>
+    <string name="cancel">取消</string>
+
+</resources>

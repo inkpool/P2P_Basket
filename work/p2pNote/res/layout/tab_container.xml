@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <RelativeLayout 
+        android:id="@+id/banner"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/banner_bg">
+        
+        <ImageButton 
+            android:id="@+id/menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/menu_icon"
+            android:layout_alignParentLeft="true"
+        	android:layout_centerVertical="true" 
+        	android:layout_marginLeft="15dp"/>
+        
+        <TextView 
+            android:id="@+id/main_tab_banner_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="25sp"
+            android:textColor="#ffffff"
+			android:layout_centerInParent="true"/>
+        
+        <Button
+            android:id="@+id/new_item"
+            android:background="@color/banner_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+        	android:layout_centerVertical="true" 
+        	android:layout_marginRight="15dp"
+            android:text="新的投资"
+            android:textColor="@color/white"
+            android:textSize="15sp"/>                
+    </RelativeLayout>
+    
+    <LinearLayout 
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/tab_bg"
+        android:layout_alignParentBottom="true">
+        
+        <ImageView 
+            android:id="@+id/tab_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tab_line"
+            />
+        
+        <LinearLayout 
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            
+            <LinearLayout 
+	            android:id="@+id/tab_index"
+	            android:orientation="vertical"
+	            android:layout_width="0dp"
+	            android:layout_height="match_parent"
+	            android:layout_weight="1"
+	            >
+	            
+	            <ImageView 
+		            android:id="@+id/tab_index_icon"
+		            android:layout_width="match_parent"
+		            android:layout_height="40dp"
+		            android:gravity="center_horizontal"
+		            android:src="@drawable/index"/>
+	            
+	            <TextView 
+	                android:id="@+id/tab_index_text"
+		            android:layout_width="match_parent"
+		            android:layout_height="20dp"
+		            android:gravity="center_horizontal"
+		            android:text="@string/tab_index"
+		            android:textSize="12sp"/>            
+	            
+	        </LinearLayout>
+	        
+	        <LinearLayout 
+	            android:id="@+id/tab_water"
+	            android:orientation="vertical"
+	            android:layout_width="0dp"
+	            android:layout_height="match_parent"
+	            android:layout_weight="1"
+	            >
+	            
+	            <ImageView 
+		            android:id="@+id/tab_water_icon"
+		            android:layout_width="match_parent"
+		            android:layout_height="40dp"
+		            android:gravity="center_horizontal"
+		            android:src="@drawable/water"/>
+	            
+	            <TextView 
+	                android:id="@+id/tab_water_text"
+		            android:layout_width="match_parent"
+		            android:layout_height="20dp"
+		            android:gravity="center_horizontal"
+		            android:text="@string/tab_water"
+		            android:textSize="12sp"/>            
+	            
+	        </LinearLayout>
+	        
+	        <LinearLayout 
+	            android:id="@+id/tab_analyze"
+	            android:orientation="vertical"
+	            android:layout_width="0dp"
+	            android:layout_height="match_parent"
+	            android:layout_weight="1"
+	            >
+	            
+	            <ImageView 
+		            android:id="@+id/tab_analyze_icon"
+		            android:layout_width="match_parent"
+		            android:layout_height="40dp"
+		            android:gravity="center_horizontal"
+		            android:src="@drawable/analyze"/>
+	            
+	            <TextView 
+	                android:id="@+id/tab_analyze_text"
+		            android:layout_width="match_parent"
+		            android:layout_height="20dp"
+		            android:gravity="center_horizontal"
+		            android:text="@string/tab_analyze"
+		            android:textSize="12sp"/>            
+	            
+	        </LinearLayout>
+	        
+	        <LinearLayout 
+	            android:id="@+id/tab_platform"
+	            android:orientation="vertical"
+	            android:layout_width="0dp"
+	            android:layout_height="match_parent"
+	            android:layout_weight="1"
+	            >
+	            
+	            <ImageView 
+		            android:id="@+id/tab_platform_icon"
+		            android:layout_width="match_parent"
+		            android:layout_height="40dp"
+		            android:gravity="center_horizontal"
+		            android:src="@drawable/platform"/>
+	            
+	            <TextView 
+	                android:id="@+id/tab_platform_text"
+		            android:layout_width="match_parent"
+		            android:layout_height="20dp"
+		            android:gravity="center_horizontal"
+		            android:text="@string/tab_platform"
+		            android:textSize="12sp"/>            
+	            
+	        </LinearLayout>
+	        
+	        <LinearLayout 
+	            android:id="@+id/tab_more"
+	            android:orientation="vertical"
+	            android:layout_width="0dp"
+	            android:layout_height="match_parent"
+	            android:layout_weight="1"
+	            >
+	            
+	            <ImageView 
+		            android:id="@+id/tab_more_icon"
+		            android:layout_width="match_parent"
+		            android:layout_height="40dp"
+		            android:gravity="center_horizontal"
+		            android:src="@drawable/more"/>
+	            
+	            <TextView 
+	                android:id="@+id/tab_more_text"
+		            android:layout_width="match_parent"
+		            android:layout_height="20dp"
+		            android:gravity="center_horizontal"
+		            android:text="@string/tab_more"
+		            android:textSize="12sp"/>            
+	            
+	        </LinearLayout>            
+            
+        </LinearLayout>        
+        
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/content"
+        android:orientation ="vertical"
+        android:layout_above="@id/tab"
+        android:layout_below="@id/banner"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffffff">
+    </LinearLayout>
+</RelativeLayout>

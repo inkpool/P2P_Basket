@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="black">#464646</color>
+    <color name="light_black">#333333</color>
+    
+        
+    <color name="tab_text_chosen">#7fc0e9</color>
+    <color name="tab_text">#A1A1A1</color>
+    <color name="tab_bg">#F7F7F7</color>
+    <color name="banner_bg">#232736</color>
+    <color name="index_info_bg">#46527B</color>
+    <color name="company01">#E94F0F</color>
+    <color name="company02">#01649F</color>
+    <color name="company03">#14BDE8</color>
+    <color name="company04">#046832</color>
+    <color name="company05">#0081CD</color>
+    <color name="company06">#D50409</color>
+    <color name="company07">#EC7B00</color>
+    <color name="company08">#D4180F</color>
+    <color name="company09">#689F38</color>
+    
+    
+</resources>
