@@ -1,4 +1,4 @@
-package com.crowley.p2pnote.db;
+ï»¿package com.crowley.p2pnote.db;
 
 
 import com.crowley.p2pnote.R;
@@ -61,19 +61,19 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		/*
-		 * Ä¿Ç°¾ÍÒ»¸ö±í£¬record£¬¼ÇÂ¼ËùÓÐµÄÍ¶×Ê¼ÇÂ¼
-		 * ±íµÄ×Ö¶Î·Ö±ðÎª
-		 * _id:idºÅ
-		 * plateform:Æ½Ì¨Ãû ÈçÂ½½ðËù
-		 * type:¾ßÌåµÄÍ¶×ÊÏîÄ¿ Èç¸»Ó®ÈËÉú
-		 * money:Í¶×ÊµÄ±¾½ð
-		 * earningMin:¸¡¶¯ÊÕÒæÂÊÏÂÏÞ Èç¹ûÊÇ¹Ì¶¨ÊÕÒæÂÊ ¸ÃÖµÎª0 ¸ñÊ½ÎªÐ¡Êý ¼´15%µÄ»°¸ÃÖµÎª0.15
-		 * earningMax:¸¡¶¯ÊÕÒæÂÊÉÏÏÞ Èç¹ûÊÇ¹Ì¶¨ÊÕÒæÂÊ ¸ÃÖµÎªÆäÊÕÒæÂÊ
-		 * method:¼ÆÏ¢·½Ê½ 0Îªµ½ÆÚ»¹±¾Ï¢ 1Îª °´ÔÂ»¹±¾Ï¢ 2Îª°´ÔÂÖ»»¹Ï¢
-		 * timeBegin:¼ÆÏ¢Ê±¼ä ¸ñÊ½Îª2014-12-26µÄ×Ö·û´®
-		 * timeEnd:µ½ÆÚÊ±¼ä ¸ñÊ½Îª2014-12-26µÄ×Ö·û´®	 
+		 * ç›®å‰å°±ä¸€ä¸ªè¡¨ï¼Œrecordï¼Œè®°å½•æ‰€æœ‰çš„æŠ•èµ„è®°å½•
+		 * è¡¨çš„å­—æ®µåˆ†åˆ«ä¸º
+		 * id:idå·
+		 * plateform:å¹³å°å å¦‚é™†é‡‘æ‰€
+		 * project_type:å…·ä½“çš„æŠ•èµ„é¡¹ç›® å¦‚å¯Œèµ¢äººç”Ÿ
+		 * money:æŠ•èµ„çš„æœ¬é‡‘
+		 * earning_min:æµ®åŠ¨æ”¶ç›ŠçŽ‡ä¸‹é™ å¦‚æžœæ˜¯å›ºå®šæ”¶ç›ŠçŽ‡ è¯¥å€¼ä¸º0 æ ¼å¼ä¸ºå°æ•° å³15%çš„è¯è¯¥å€¼ä¸º0.15
+		 * earning_max:æµ®åŠ¨æ”¶ç›ŠçŽ‡ä¸Šé™ å¦‚æžœæ˜¯å›ºå®šæ”¶ç›ŠçŽ‡ è¯¥å€¼ä¸ºå…¶æ”¶ç›ŠçŽ‡
+		 * interest_method:è®¡æ¯æ–¹å¼ 0ä¸ºåˆ°æœŸè¿˜æœ¬æ¯ 1ä¸º æŒ‰æœˆè¿˜æœ¬æ¯ 2ä¸ºæŒ‰æœˆåªè¿˜æ¯
+		 * time_begin:è®¡æ¯æ—¶é—´ æ ¼å¼ä¸º2014-12-26çš„å­—ç¬¦ä¸²
+		 * time_end:åˆ°æœŸæ—¶é—´ æ ¼å¼ä¸º2014-12-26çš„å­—ç¬¦ä¸²	 
 		 */
-		db.execSQL("create table if not exists record (_id integer primary key autoincrement,platform text not null,type text not null,money real not null,earningMin real not null,earningMax real not null,method integer not null,timeBegin text not null,timeEnd text not null)");		
+		db.execSQL("create table if not exists record (id integer primary key autoincrement,platform_name text not null,project_type text not null,money real not null,earning_min real not null,earning_max real not null,interest_method integer not null,time_begin text not null,time_end text not null,gmt_create text,gmt_modify text)");		
 	}
 
 	@Override
@@ -94,15 +94,15 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	Cursor cursor = db.rawQuery("select * from record", null);
 	if(cursor!=null){
 		while (cursor.moveToNext()) {
-			Log.i("m_info", "_id:"+cursor.getInt(cursor.getColumnIndex("_id")));
-			Log.i("m_info", "platform:"+cursor.getString(cursor.getColumnIndex("platform")));
-			Log.i("m_info", "type:"+cursor.getString(cursor.getColumnIndex("type")));
+			Log.i("m_info", "id:"+cursor.getInt(cursor.getColumnIndex("id")));
+			Log.i("m_info", "platform_name:"+cursor.getString(cursor.getColumnIndex("platform_name")));
+			Log.i("m_info", "project_type:"+cursor.getString(cursor.getColumnIndex("project_type")));
 			Log.i("m_info", "money:"+cursor.getFloat(cursor.getColumnIndex("money")));
-			Log.i("m_info", "earningMin:"+cursor.getFloat(cursor.getColumnIndex("earningMin")));
-			Log.i("m_info", "earningMax:"+cursor.getFloat(cursor.getColumnIndex("earningMax")));
-			Log.i("m_info", "method:"+cursor.getInt(cursor.getColumnIndex("method")));
-			Log.i("m_info", "timeBegin:"+cursor.getString(cursor.getColumnIndex("timeBegin")));
-			Log.i("m_info", "timeEnd:"+cursor.getString(cursor.getColumnIndex("timeEnd")));
+			Log.i("m_info", "earning_min:"+cursor.getFloat(cursor.getColumnIndex("earning_min")));
+			Log.i("m_info", "earning_max:"+cursor.getFloat(cursor.getColumnIndex("earning_max")));
+			Log.i("m_info", "interest_method:"+cursor.getInt(cursor.getColumnIndex("interest_method")));
+			Log.i("m_info", "time_begin:"+cursor.getString(cursor.getColumnIndex("time_begin")));
+			Log.i("m_info", "time_end:"+cursor.getString(cursor.getColumnIndex("time_end")));
 			Log.i("m_info", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		}
 		cursor.close();
@@ -111,37 +111,37 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 	*/
 	
 	/*SQLiteDatabase db = openOrCreateDatabase("record.db", MODE_PRIVATE, null);
-	db.execSQL("create table if not exists record (_id integer primary key autoincrement,platform text not null,type text not null,money real not null,earningMin real not null,earningMax real not null,method integer not null,timeBegin text not null,timeEnd text not null)");
-	//db.execSQL("insert into record(platform,type,money,earningMin,earningMax,method,timeBegin,timeEnd) values('Â½½ðËù','¸»Ó®ÈËÉú',10000.00,0.05,0.08,0,'2014-12-16','2015-12-16')");
-	//db.execSQL("insert into record(platform,type,money,earningMin,earningMax,method,timeBegin,timeEnd) values('Â½½ðËù','¸»Ó®ÈËÉú',10000.00,0.05,0.08,0,'2014-12-17','2015-12-17')");
-	//db.execSQL("insert into record(platform,type,money,earningMin,earningMax,method,timeBegin,timeEnd) values('Â½½ðËù','¸»Ó®ÈËÉú',10000.00,0.05,0.08,0,'2014-12-18','2015-12-18')");
+	db.execSQL("create table if not exists record (id integer primary key autoincrement,platform_name text not null,project_type text not null,money real not null,earning_min real not null,earning_max real not null,interest_method integer not null,time_begin text not null,time_end text not null)");
+	//db.execSQL("insert into record(platform_name,project_type,money,earning_min,earning_max,interest_method,time_begin,time_end) values('é™†é‡‘æ‰€','å¯Œèµ¢äººç”Ÿ',10000.00,0.05,0.08,0,'2014-12-16','2015-12-16')");
+	//db.execSQL("insert into record(platform_name,project_type,money,earning_min,earning_max,interest_method,time_begin,time_end) values('é™†é‡‘æ‰€','å¯Œèµ¢äººç”Ÿ',10000.00,0.05,0.08,0,'2014-12-17','2015-12-17')");
+	//db.execSQL("insert into record(platform_name,project_type,money,earning_min,earning_max,interest_method,time_begin,time_end) values('é™†é‡‘æ‰€','å¯Œèµ¢äººç”Ÿ',10000.00,0.05,0.08,0,'2014-12-18','2015-12-18')");
 	ContentValues values = new ContentValues();
-	values.put("platform", "Â½½ðËù");
-	values.put("type", "¸»Ó®ÈËÉú");
+	values.put("platform_name", "é™†é‡‘æ‰€");
+	values.put("project_type", "å¯Œèµ¢äººç”Ÿ");
 	values.put("money", 10000.00);
-	values.put("earningMin", 0.01);
-	values.put("earningMax", 0.09);
-	values.put("method", 0);
-	values.put("timeBegin", "2014-12-16");
-	values.put("timeEnd", "2015-12-16");
+	values.put("earning_min", 0.01);
+	values.put("earning_max", 0.09);
+	values.put("interest_method", 0);
+	values.put("time_begin", "2014-12-16");
+	values.put("time_end", "2015-12-16");
 	long rowId = db.insert(TABLENAME, null, values);
 	values.clear();
-	values.put("type", "¸»Ó®ÈËÉú123");
-	db.update(TABLENAME, values, "_id>?", new String[]{"3"});
-	//db.delete(TABLENAME, "_id>?", new String[]{"4"});
+	values.put("project_type", "å¯Œèµ¢äººç”Ÿ123");
+	db.update(TABLENAME, values, "id>?", new String[]{"3"});
+	//db.delete(TABLENAME, "id>?", new String[]{"4"});
 	Cursor cursor = db.rawQuery("select * from record", null);
 	
 	if(cursor!=null){
 		while (cursor.moveToNext()) {
-			Log.i("m_info", "_id:"+cursor.getInt(cursor.getColumnIndex("_id")));
-			Log.i("m_info", "platform:"+cursor.getString(cursor.getColumnIndex("platform")));
-			Log.i("m_info", "type:"+cursor.getString(cursor.getColumnIndex("type")));
+			Log.i("m_info", "id:"+cursor.getInt(cursor.getColumnIndex("id")));
+			Log.i("m_info", "platform_name:"+cursor.getString(cursor.getColumnIndex("platform_name")));
+			Log.i("m_info", "project_type:"+cursor.getString(cursor.getColumnIndex("s")));
 			Log.i("m_info", "money:"+cursor.getFloat(cursor.getColumnIndex("money")));
-			Log.i("m_info", "earningMin:"+cursor.getFloat(cursor.getColumnIndex("earningMin")));
-			Log.i("m_info", "earningMax:"+cursor.getFloat(cursor.getColumnIndex("earningMax")));
-			Log.i("m_info", "method:"+cursor.getInt(cursor.getColumnIndex("method")));
-			Log.i("m_info", "timeBegin:"+cursor.getString(cursor.getColumnIndex("timeBegin")));
-			Log.i("m_info", "timeEnd:"+cursor.getString(cursor.getColumnIndex("timeEnd")));
+			Log.i("m_info", "earning_min:"+cursor.getFloat(cursor.getColumnIndex("earning_min")));
+			Log.i("m_info", "earning_max:"+cursor.getFloat(cursor.getColumnIndex("earning_max")));
+			Log.i("m_info", "interest_method:"+cursor.getInt(cursor.getColumnIndex("interest_method")));
+			Log.i("m_info", "time_begin:"+cursor.getString(cursor.getColumnIndex("time_begin")));
+			Log.i("m_info", "time_end:"+cursor.getString(cursor.getColumnIndex("time_end")));
 			Log.i("m_info", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		}
 		cursor.close();
